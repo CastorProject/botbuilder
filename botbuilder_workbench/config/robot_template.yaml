@@ -1,0 +1,70 @@
+#template file to construct the robot components
+#robot: "castor"
+#	platform: "ros-version"
+#	version: "1.0.0"
+#	components: "dd"
+#		physical: "actuator" 
+#			name: "head"
+#			type: "actuator"
+robot:
+  name: "CASTOR"
+  model: "castor-onohat"
+  version: "1.0.0"
+  physical_modules:
+   #head module
+    head:
+     components:
+      yaw_actuator:
+       type: "onohat_servo"
+       id: 1
+       min: 0
+       origin: 50
+       max: 200  
+   #left arm
+    left_arm:
+     components:
+      #actuators
+      shoulder_servo:
+       type: "dmx_servo"
+       id: 1
+       min: 100
+       max: 200
+       origin: 100
+      elbow_servo:
+       type: "dmx_servo"
+       id: 2
+       min: 1
+       max: 20
+       origin: 10
+      hand_servo:
+       type: "onohat_servo"
+       id: 2
+       min: 0
+       max: 200
+       origin: 50
+       #sensors
+    #right arm
+    right_arm:
+     components:
+      #actuators
+      shoulder_servo:
+       type: "dmx_servo"
+       id: 1
+       min: 100
+       max: 200
+       origin: 100
+      elbow_servo:
+       type: "dmx_servo"
+       id: 2
+       min: 1
+       max: 20
+       origin: 10
+      hand_servo:
+       type: "onohat_servo"
+       id: 2
+       min: 0
+       max: 200
+       origin: 50
+    
+       
+      
