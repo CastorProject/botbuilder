@@ -2,6 +2,6 @@
 <launch>
 	<rosparam file="$(find botbuilder_workbench)/config/robot_template.yaml" command="load"/>
 	
-	<node name="botbuilder" pkg="botbuilder_workbench" type="module.py" output="screen"/>
+	<node name="botbuilder" pkg="botbuilder_workbench" type="assembler.py" output="screen"/>
 	
 </launch>

@@ -6,6 +6,7 @@
 #		physical: "actuator" 
 #			name: "head"
 #			type: "actuator"
+
 robot:
   name: "CASTOR"
   model: "castor-onohat"
@@ -16,10 +17,11 @@ robot:
      components:
       yaw_actuator:
        type: "onohat_servo"
-       id: 1
-       min: 0
-       origin: 50
-       max: 200  
+       info:
+        id: 1
+        min: 0
+        origin: 50
+        max: 200  
    #left arm
     left_arm:
      components:

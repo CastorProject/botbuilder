@@ -8,23 +8,26 @@ from dynamixel_workbench_msgs.srv import TorqueEnable
 #import topic msgs
 from sensor_msgs.msg import JointState
 
-print JointCommand
+#print JointCommand
 
 class Actuator(object):
 	'''
 	Actuator Class: Base class to inherit the general actuation functionality
 	'''
-	def __init__(self):
+	def __init__(self, info = {
+				    "ros_label"   : "/actuator",
+				    "controller"  : "/base_controller",
+			            "actuation"   : "electrical",
+				    "motion"	  : "rotatory",
+				    "hardware"    : "generic",
+				    "id"          : 0,
+				    "max"         : 1,
+				    "min"         : 0,
+                                    "origin"	  : 0,
+			            "component_id": 0
+				    }):
 		#basic class info
-		self.info = {
-					 "ros_label"   : "/actuator",
-				     "controller"  : "/base_controller",
-					 "actuation"   : "electrical",
-					 "motion"	   : "rotatory",
-				     "hardware"    : "generic",
-				     "id" 		   : 0,
-					 "component_id": 0
-				    }
+		self.info = info
 
 		#actuator operation range
 		self.max_limit  = 360
