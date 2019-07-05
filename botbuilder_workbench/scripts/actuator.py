@@ -3,8 +3,15 @@
 import rospy
 import time
 # create base services
-from dynamixel_workbench_msgs.srv import JointCommand
-from dynamixel_workbench_msgs.srv import TorqueEnable
+
+
+#from dynamixel_workbench_msgs.srv import JointCommand
+from botbuilder_msgs.srv import JointCommand
+
+
+#from dynamixel_workbench_msgs.srv import TorqueEnable
+from botbuilder_msgs.srv import TorqueEnable
+
 #import topic msgs
 from sensor_msgs.msg import JointState
 
@@ -123,7 +130,10 @@ class Actuator(object):
 			return True
 		else:
 			return False
-
+	
+	def set_origin_position(self):
+		self.set_position(command = {'value': self.origin}, threaded = False)
+		
 
 	def set_position(self, command, threaded = False):
 		'''

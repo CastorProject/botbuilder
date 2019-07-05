@@ -21,14 +21,15 @@ class DmxServo(Actuator):
         super(DmxServo, self).__init__()
         #set custom dynamixel motor info 
         self.info = {
-					 "ros_label"   : "head",
-				     "controller"  : "/dmx_controller",
-					 "actuation"   : "electrical",
-					 "motion"	   : "rotatory",
-				     "hardware"    : "dynamixel",
-				     "id" 		   : 0,
-                     "component_id": 0
+				     "ros_label"            : "head",
+				     "controller"          : "/dmx_controller",
+				     "actuation"           : "electrical",
+				     "motion"	          : "rotatory",
+				     "hardware"           : "dynamixel",
+				     "id" 		                  : 0,
+                                     "component_id": 0
 				    }
+
         #deploy actuator
         self.deploy_actuator()
 
@@ -77,34 +78,33 @@ class OnohatServo(Actuator):
 
 
 if __name__ == '__main__':
-    rospy.init_node("servo")
+	rospy.init_node("servo")
+	
+	rate = rospy.Rate(10) # 10hz
+	
+	#servo  = DmxServo()
+	#shoulder = DmxServo()
+	mouth1 = OnohatServo()
+	mouth2 = OnohatServo()
+	mouth3 = OnohatServo()
+	
+	
+	
+	mouth1.set_motor_id(0)
+	mouth2.set_motor_id(1)
+	mouth3.set_motor_id(2)
+	
+	mouth1.set_actuation_range(min =790, origin =800, max = 1101)
+	mouth2.set_actuation_range(min =790, origin =1200, max = 1700)  #inverted 1700 is sad, 790 is happy
+	mouth3.set_actuation_range(min =799, origin =1100, max = 1501) #
+	
+	time.sleep(3)
+	mouth1.set_position(command ={'value':801}) 
+	
+	
+	while not (rospy.is_shutdown()):
+		print(hand.get_state())
+	
+		#print servo.get_info()
+		rate.sleep()
 
-    rate = rospy.Rate(10) # 10hz
-
-    #servo  = DmxServo()
-    #shoulder = DmxServo()
-    hand = OnohatServo()
-
-
-    #servo.set_motor_id(1)
-    #shoulder.set_motor_id(2)
-    hand.set_motor_id(1)
-
-
-
-    hand.set_actuation_range(min =800, origin =1000, max = 2000)
-    #hand.set_stiffness(command = True)
-    #servo.set_actuation_range(min = 50, origin = 350, max = 650)
-    #shoulder.set_actuation_range(min =370,origin = 370,max= 800)
-
-    print(hand.info)
-    time.sleep(3)
-    hand.set_position(command ={'value':801}) 
-    #servo.set_position(command = {'value' : 350})
-    #shoulder.set_position(command = {'value':370})
-
-    while not (rospy.is_shutdown()):
-        print(hand.get_state())
-
-        #print servo.get_info()
-        rate.sleep()
