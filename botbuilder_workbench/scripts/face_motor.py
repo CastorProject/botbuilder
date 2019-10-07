@@ -57,12 +57,12 @@ class FaceMotor(object):
 		#set id's
 		self.mouth1.set_motor_id(0)
 		self.mouth2.set_motor_id(1)
-		self.mouth3.set_motor_id(2)
-		self.eyeledleft.set_motor_id(4)
+		self.mouth3.set_motor_id(4)
+		self.eyeledleft.set_motor_id(5)
 		self.eyeledright.set_motor_id(6)
 		
 		#set actuation ranges
-		self.mouth1.set_actuation_range(min =1249, max = 1331, origin =1261)
+		self.mouth1.set_actuation_range(min =1099, max = 1331, origin =1261)
 		self.mouth2.set_actuation_range(min =799, max = 1301, origin =950) #inverted 1700 is sad, 790 is happy left
 		self.mouth3.set_actuation_range(min =899, max = 1501 , origin =1280) # right
 		self.eyeledleft.set_actuation_range(min = 1199, max = 1851, origin =1450)
@@ -101,7 +101,7 @@ class FaceMotor(object):
 		self.pubEyesPosition.publish(self.eyesPosition)
 		self.pupilSize.data = 0.4
 		self.pubSizePupils.publish(self.pupilSize)
-		self.mouth1.set_position(command ={'value':1250})
+		self.mouth1.set_position(command ={'value':1100})
 		self.mouth2.set_position(command ={'value':800})
 		self.mouth3.set_position(command ={'value':1500})
 		self.eyeledleft.set_position(command ={'value':1300})
@@ -142,17 +142,19 @@ class FaceMotor(object):
                 self.eyeledleft.set_origin_position()
                 self.eyeledright.set_origin_position()
 
-
 	def talk(self):
 		self.eyesPosition.x = 0.0
 		self.eyesPosition.y = 8.0
 		self.eyesPosition.z = 0.0
+		self.pubEyesPosition.publish(self.eyesPosition)
+		self.pupilSize.data = 0.7
+		self.pubSizePupils.publish(self.pupilSize)
 		self.mouth2.set_position(command ={'value':950})
 		self.mouth3.set_position(command ={'value':1300})
 		while not self.stopTalk:
-			self.mouth1.set_position(command ={'value':1300})
-			time.sleep(0.2)
 			self.mouth1.set_position(command ={'value':1330})
+			time.sleep(0.2)
+			self.mouth1.set_position(command ={'value':1300})
 			time.sleep(0.2)
 		return
 
