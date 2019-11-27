@@ -55,8 +55,13 @@ class FaceMotor(object):
 		#eyeled
 		
 		#set id's
-		self.mouth1.set_motor_id(0)
-		self.mouth2.set_motor_id(1)
+		#0
+		#2
+		#4
+		#6
+		#15
+		self.mouth1.set_motor_id(1)
+		self.mouth2.set_motor_id(0)
 		self.mouth3.set_motor_id(2)
 		self.eyeledleft.set_motor_id(4)
 		self.eyeledright.set_motor_id(6)
@@ -168,19 +173,19 @@ class FaceMotor(object):
 		return
 		
 	def main(self):
-		#rospy.loginfo("[%s] Facemotor node started ok", self.name)
-		#active = self.activate_mosfet(True)
-		#if active:
-		#	while not (rospy.is_shutdown()):
-		#		if self.changeEmotions:
-		#			self.emotionsDict[self.emotion]()
-		#			self.changeEmotions = False
-		#		self.rate.sleep()
-		while not (rospy.is_shutdown()):
-			if self.changeEmotions:
-				self.emotionsDict[self.emotion]()
-				self.changeEmotions = False
-			self.rate.sleep()
+		rospy.loginfo("[%s] Facemotor node started ok", self.name)
+		active = self.activate_mosfet(True)
+		if active:
+			while not (rospy.is_shutdown()):
+				if self.changeEmotions:
+					self.emotionsDict[self.emotion]()
+					self.changeEmotions = False
+				self.rate.sleep()
+		#while not (rospy.is_shutdown()):
+		#	if self.changeEmotions:
+		#		self.emotionsDict[self.emotion]()
+		#		self.changeEmotions = False
+		#	self.rate.sleep()
 		return
 
 	def demo(self):
