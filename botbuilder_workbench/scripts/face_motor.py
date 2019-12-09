@@ -195,9 +195,9 @@ class FaceMotor(object):
 		time.sleep(3)
 		self.set_sad()
 		time.sleep(3)
-		self.set_surprise()
-		time.sleep(3)
 		self.set_angry()
+		time.sleep(3)
+		self.set_surprise()
 		time.sleep(3)
 		self.set_neutral()
 		time.sleep(3)
@@ -211,5 +211,4 @@ if __name__ == '__main__':
 	time.sleep(5)
 	fm.main()
  	#while not (rospy.is_shutdown()): 	
-	#	fm.loop()		
-
+	#	fm.loop()	
