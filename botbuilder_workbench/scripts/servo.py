@@ -88,8 +88,6 @@ if __name__ == '__main__':
 	mouth2 = OnohatServo()
 	mouth3 = OnohatServo()
 	
-	
-	
 	mouth1.set_motor_id(0)
 	mouth2.set_motor_id(1)
 	mouth3.set_motor_id(2)
